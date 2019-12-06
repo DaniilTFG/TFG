@@ -1,46 +1,29 @@
 <?php
-class VException extends RuntimeException {
+ini_set("display_errors",1);error_reporting(-1);
+include_once("core/EquationInterface.php");
+include_once("core/LogInterface.php");
+include_once("core/LogAbstract.php");
+include_once("DaniilTFG/DaniilTFGException.php");
+include_once("DaniilTFG/LinearEquation.php");
+include_once("DaniilTFG/QuadraticEquation.php");
+include_once("DaniilTFG/MyLog.php");
+$co_arr = [];
+foreach(["a", "b", "c"] as $co) {
+	$line = readline("Enter ".$co.": ");
+	$co_arr[$co] = $line === "" ? 0 : $line;
 }
-class LinearEquation {
-	protected $a;
-	protected $b;
-	protected $x;
-	function ur($a, $b){
-		if ($a != 0) {
-			$x = -1*$b/$a;
-			$this->x = $x;
-			return $x;
-		}
-		throw new VException ("Нет решения");	
-	}
-}
-class QuadraticEquation extends LinearEquation{
-	protected $c;
-	protected $x2;
-	protected function dis($a, $b, $c) {
-		$dis = $b*$b - 4*$a*$c;
-		return $dis;
-	}
-	function ur2($a, $b, $c) {
-		$dis = $this->dis($a, $b, $c);
-		if ($a == 0){
-		$this ->ur($a , $b);
-		}
-		if ($dis > 0) {
-			$x = (-1*$b + sqrt($dis))/(2*$a);
-			$x2 = (-1*$b - sqrt($dis))/(2*$a);
-			$this->x = $x;
-			$this->x2 = $x2;
-			return array($x, $x2);
-		} elseif ($dis = 0) {
-			$x = (-1*$b)/(2*$a);
-			$this->x = $x;
-			return array($x);
-		}
-		throw new VException ("Нет решения");
-	}
-}
+$a = $co_arr["a"];
+$b = $co_arr["b"];
+$c = $co_arr["c"];
+//DaniilTFG\Log::log("Entered numbers: " . implode(", ", $co_arr));
+DaniilTFG\Log::log("Equation: $a*x^2 + $b*x + $c = 0");
+try {
+	$solver = new DaniilTFG\QuadraticEquation($a, $b, $c);
+	
+	DaniilTFG\Log::log("Roots: " . implode(", ", $solver->solve($a, $b, $c)));
+	
+}catch(DaniilTFG\DaniilTFGException $ms) {
+	DaniilTFG\Log::log($ms->getMessage());
+} 
+DaniilTFG\Log::write();
 ?>
-
-
-
