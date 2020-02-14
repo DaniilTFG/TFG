@@ -8,6 +8,14 @@ include_once("DaniilTFG/LinearEquation.php");
 include_once("DaniilTFG/QuadraticEquation.php");
 include_once("DaniilTFG/MyLog.php");
 
+date_default_timezone_set("Europe/Moscow");
+
+$file = @fopen('version', 'r');
+if ($file !== false) {
+	$version = trim(fread($file, 100));
+	DaniilTFG\Log::log("Program version: " . $version);
+}
+
 $arr = [];
 $arr[] = readline("a=");
 $arr[] = readline("b=");
