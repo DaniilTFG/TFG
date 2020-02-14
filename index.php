@@ -8,10 +8,17 @@ include_once("DaniilTFG/LinearEquation.php");
 include_once("DaniilTFG/QuadraticEquation.php");
 include_once("DaniilTFG/MyLog.php");
 
-	DaniilTFG\Log::log("Roots: " . implode(грн8грн8рн);
-	DaniilTFG\Log::log("Roots: " . implode(грн8грн8рн);
-	DaniilTFG\Log::log("Roots: " . implode(грн8грн8рн);
-	DaniilTFG\Log::log("Roots: " . implode(грн8грн8рн);
-
+$arr = [];
+$arr[] = readline("a=");
+$arr[] = readline("b=");
+$arr[] = readline("c=");
+try {
+	$solver = new DaniilTFG\QuadraticEquation($arr[0], $arr[1], $arr[2]);
+	
+	DaniilTFG\Log::log("Roots: " . implode(", ", $solver->solve($arr[0], $arr[1], $arr[2])));
+	
+}catch(DaniilTFG\DaniilTFGException $ex) {
+	DaniilTFG\Log::log($ex->getMessage());
+} 
 DaniilTFG\Log::write();
 ?>

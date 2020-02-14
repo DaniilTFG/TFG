@@ -1,6 +1,6 @@
 <?php
 namespace DaniilTFG;
-// Квадратное уравнение ax^2+bx+c
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ax^2+bx+c
 class QuadraticEquation extends LinearEquation implements \core\EquationInterface{
 	protected $c;
 	protected $x2;
@@ -12,6 +12,8 @@ class QuadraticEquation extends LinearEquation implements \core\EquationInterfac
 			return $this ->ur($a , $b);
 		}
 		$dis = $this->dis($a, $b, $c);
+		Log::log("Equation is quadratic");
+		Log::log("Equation $a*x^2+$b*x+$c=0");
 		if ($dis > 0) {
 			$x = (-1*$b + sqrt($dis))/(2*$a);
 			$x2 = (-1*$b - sqrt($dis))/(2*$a);
