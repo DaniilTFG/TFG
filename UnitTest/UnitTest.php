@@ -13,18 +13,32 @@ include_once("DaniilTFG/MyLog.php");
 
 final class UnitTest extends TestCase
 {
-  public function testQuadratic(): void
+  public function testQuadratic1_m7_12(): void
   {
     $solver = new DaniilTFG\QuadraticEquation(1, -7, 12);
     $r = $solver->solve(1, -7, 12);
     $this->assertEquals($r, [4, 3]);
   }
 
-  public function testLinear(): void
+  public function testQuadratic6_3_m9(): void
+  {
+    $solver = new DaniilTFG\QuadraticEquation(6, 3, -9);
+    $r = $solver->solve(6, 3, -9);
+    $this->assertEquals($r, [1, -1,5]);
+  }
+
+  public function testLinear1_10(): void
   {
     $solver = new DaniilTFG\LinearEquation();
     $r = $solver->ur(1, 10);
-    $this->assertEquals($r, -10);
+    $this->assertEquals($r, [-10]);
+  }
+
+  public function testLinear3_15(): void
+  {
+    $solver = new DaniilTFG\LinearEquation();
+    $r = $solver->ur(3, 15);
+    $this->assertEquals($r, [-5]);
   }
 
   public function testAllZerosException(): void
@@ -34,7 +48,7 @@ final class UnitTest extends TestCase
     $solver->solve(0, 0, 0);
   }
 
-  public function testLinear2(): void
+  public function testAllZerosExceptionLinear(): void
   {
     $this->expectException(DaniilTFG\DaniilTFGException::class);    
     $solver = new DaniilTFG\LinearEquation();

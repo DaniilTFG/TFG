@@ -9,7 +9,7 @@ class QuadraticEquation extends LinearEquation implements \core\EquationInterfac
 	}
 	function solve($a, $b, $c) {
 		if ($a == 0){
-			return $this ->ur($a , $b);
+			return $this ->ur($b , $c);
 		}
 		$dis = $this->dis($a, $b, $c);
 		Log::log("Equation is quadratic");

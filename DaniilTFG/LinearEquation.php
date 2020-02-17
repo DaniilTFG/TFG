@@ -10,7 +10,7 @@ class LinearEquation {
 
 			$x = -1*$b/$a;
 			$this->x = $x;
-			return $x;
+			return [$x];
 		}
 		throw new DaniilTFGException ("Equation does not exist");	
 	}
